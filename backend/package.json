@@ -6,7 +6,12 @@
   "module": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "make:migration": "knex migrate:make initial",
+    "migrate": "knex migrate:latest --knexfile ./db/knexfile.ts",
+    "make:seed": "knex seed:make seeds --knexfile ./db/knexfile.ts",
+    "seed": "knex seed:run --knexfile ./db/knexfile.ts",
+    "migrate-down": "knex migrate:down --knexfile ./db/knexfile.ts"
   },
   "keywords": [],
   "author": "",
