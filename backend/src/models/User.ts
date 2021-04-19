@@ -4,7 +4,9 @@ export default class User extends Model {
   id!: number;
   username!: string;
   password!: string;
+
   static tableName = 'users';
+
   static jsonSchema = {
     type: 'object',
     required: ['username', 'password'],
