@@ -5,7 +5,7 @@ const knexConfig = {
     client: 'postgresql',
     connection: {
       user: 'hive',
-      password: null,
+      password: 'hive',
       database: 'notes',
     },
     pool: {
