@@ -10,7 +10,13 @@ const routerOpts: Router.IRouterOptions = {
 const router: Router = new Router(routerOpts);
 
 router.get('/', async (ctx: Koa.Context) => {
-  const note = Note.query().withGraphFetched('author');
+  const notes = Note.query().withGraphFetched('author');
+  ctx.body = await notes;
+});
+
+router.get('/:noteId', async (ctx: Koa.Context) => {
+  const { noteId } = ctx.params;
+  const note = Note.query().findById(noteId).withGraphFetched('author');
   ctx.body = await note;
 });
 

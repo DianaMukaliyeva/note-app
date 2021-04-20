@@ -21,7 +21,6 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
   try {
     await next();
   } catch (error) {
-    console.log('wer are hwere', error);
     ctx.status = error.statusCode || error.status;
     error.status = ctx.status;
     ctx.body = { error };
@@ -29,13 +28,13 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
   }
 });
 
-app.use(
-  jwt({
-    secret: 'secret',
-  }).unless({
-    path: [/^\/public/, '/'],
-  }),
-);
+// app.use(
+//   jwt({
+//     secret: 'secret',
+//   }).unless({
+//     path: [/^\/public/, '/'],
+//   }),
+// );
 
 app.use(noteController.routes());
 app.use(noteController.allowedMethods());
