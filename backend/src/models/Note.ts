@@ -3,7 +3,7 @@ import User from './User';
 
 export default class Note extends Model {
   id!: number;
-  author_id!: 'integer';
+  authorId!: 'integer';
   title!: string;
   content!: string;
 
@@ -11,10 +11,10 @@ export default class Note extends Model {
 
   static jsonSchema = {
     type: 'object',
-    required: ['author_id', 'title', 'content'],
+    required: ['authorId', 'title', 'content'],
     properties: {
       id: { type: 'integer' },
-      author: { type: 'integer' },
+      authorId: { type: 'integer' },
       title: { type: 'string', minLength: 1, maxLength: 255 },
       content: { type: 'string', minLength: 1, maxLength: 255 },
     },
@@ -26,7 +26,7 @@ export default class Note extends Model {
         relation: Model.HasOneRelation,
         modelClass: User,
         join: {
-          from: 'notes.author_id',
+          from: 'notes.authorId',
           to: 'users.id',
         },
       },

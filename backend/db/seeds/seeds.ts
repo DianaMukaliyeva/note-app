@@ -11,7 +11,7 @@ export async function seed(knex: Knex): Promise<void> {
     { id: 2, username: 'user2', password: 'user2' },
   ]);
   await knex('notes').insert([
-    { id: 1, author_id: 1, title: 'user1 note', content: 'some test' },
-    { id: 2, author_id: 2, title: 'user2 note', content: 'some test' },
+    { id: 1, authorId: 1, title: 'user1 note', content: 'some test' },
+    { id: 2, authorId: 2, title: 'user2 note', content: 'some test' },
   ]);
 }

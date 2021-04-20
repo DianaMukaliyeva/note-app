@@ -9,7 +9,7 @@ export async function up(knex: Knex): Promise<any> {
     })
     .createTable('notes', (table: Knex.TableBuilder) => {
       table.increments('id').primary();
-      table.integer('author_id').notNullable().references('id').inTable('users');
+      table.integer('authorId').notNullable().references('id').inTable('users');
       table.string('title');
       table.string('content');
     });
