@@ -1,5 +1,7 @@
 import { Model } from 'objection';
 
+import Note from './Note';
+
 export default class User extends Model {
   id!: number;
   username!: string;
@@ -16,4 +18,15 @@ export default class User extends Model {
       password: { type: 'string', minLength: 1, maxLength: 255 },
     },
   };
+
+  static relationMappings = () => ({
+    notes: {
+      relation: Model.HasManyRelation,
+      modelClass: Note,
+      join: {
+        from: 'users.id',
+        to: 'notes.authorId',
+      },
+    },
+  });
 }

@@ -20,7 +20,7 @@ export default class Note extends Model {
     },
   };
 
-  static get relationMappings() {
+  static relationMappings() {
     return {
       author: {
         relation: Model.HasOneRelation,

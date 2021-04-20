@@ -10,7 +10,7 @@ export interface LoginDetails {
 }
 
 const routerOpts: Router.IRouterOptions = {
-  prefix: '/public',
+  prefix: '/users',
 };
 
 const router: Router = new Router(routerOpts);
@@ -29,6 +29,11 @@ router.post('/login', async (ctx: Koa.Context) => {
       ),
     };
   }
+});
+
+router.get('/', async (ctx: Koa.Context) => {
+  const users = User.query().select('id', 'username').withGraphFetched('notes');
+  ctx.body = await users;
 });
 
 export default router;
