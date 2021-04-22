@@ -3,7 +3,7 @@ import User from './User';
 
 export default class Note extends Model {
   id!: number;
-  authorId!: 'integer';
+  authorId!: number;
   title!: string;
   content!: string;
 
