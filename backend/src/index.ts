@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import Knex from 'knex';
 import bodyParser from 'koa-bodyparser';
-import { Model } from 'objection';
+import { ForeignKeyViolationError, Model, ValidationError } from 'objection';
 import jwt from 'koa-jwt';
 import cors from '@koa/cors';
 
@@ -21,10 +21,24 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
   try {
     await next();
   } catch (error) {
-    ctx.status = error.statusCode || error.status;
-    error.status = ctx.status;
-    ctx.body = { error };
-    ctx.app.emit('error', error, ctx);
+    if (error instanceof ValidationError) {
+      ctx.status = 400;
+      ctx.body = {
+        error: 'ValidationError',
+        errors: error.data,
+      };
+    } else if (error instanceof ForeignKeyViolationError) {
+      ctx.status = 409;
+      ctx.body = {
+        error: 'ForeignKeyViolationError',
+      };
+    } else {
+      ctx.status = 500;
+      ctx.body = {
+        error: 'InternalServerError',
+        message: error.message || {},
+      };
+    }
   }
 });
 
