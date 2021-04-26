@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import Koa from 'koa';
 import Knex from 'knex';
 import bodyParser from 'koa-bodyparser';
@@ -8,6 +9,8 @@ import cors from '@koa/cors';
 import knexConfig from '../db/knexfile';
 import noteController from './controllers/note.controller';
 import userController from './controllers/user.controller';
+
+dotenv.config();
 
 const knex = Knex(knexConfig.development);
 

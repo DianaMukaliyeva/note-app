@@ -14,6 +14,7 @@
     "allowJs": true,
     "target": "esnext",
     "rootDir": "./",
-    "outDir": "lib"
+    "outDir": "lib",
+    "types": ["node"]
   }
 }
