@@ -9,6 +9,7 @@ import cors from '@koa/cors';
 import knexConfig from '../db/knexfile';
 import noteController from './controllers/note.controller';
 import userController from './controllers/user.controller';
+import pdfGenerator from './utils/pdfGenerator';
 
 dotenv.config();
 
@@ -52,6 +53,8 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 //     path: [/^\/public/, '/'],
 //   }),
 // );
+
+pdfGenerator();
 
 app.use(noteController.routes());
 app.use(noteController.allowedMethods());
