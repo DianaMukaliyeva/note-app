@@ -15,8 +15,8 @@ export default class Note extends Model {
     properties: {
       id: { type: 'integer' },
       authorId: { type: 'integer' },
-      title: { type: 'string', minLength: 1, maxLength: 255 },
-      content: { type: 'string', minLength: 1, maxLength: 255 },
+      title: { type: 'string', minLength: 1, maxLength: 20 },
+      content: { type: 'string', minLength: 1, maxLength: 40 },
     },
   };
 

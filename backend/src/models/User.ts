@@ -6,6 +6,7 @@ export default class User extends Model {
   id!: number;
   username!: string;
   password!: string;
+  notes!: Note[];
 
   static tableName = 'users';
 
