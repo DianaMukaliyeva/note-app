@@ -28,7 +28,6 @@ router.post('/', async (ctx: Koa.Context) => {
   const queue = 'pdf';
   amqp.connect(process.env.RABBITMQ_URL || '', (error0: Error, connection: Connection) => {
     if (error0) throw error0;
-
     connection.createChannel((error1: Error, channel: Channel) => {
       if (error1) throw error1;
       const msg = ctx.request.body.authorId.toString();
